@@ -1,0 +1,22 @@
+#form__wrapper input[class="invalid"],
+#form__wrapper textarea[class="invalid"] {
+    background-color: rgb(250, 166, 166);
+    border-color: red;
+}
+
+.error__message {
+    margin: 0;
+    padding: 0;
+    color: red;
+}
+
+
+/* div.error__message[class*="good"] {
+    color: green;
+} */
+
+@media (max-width: 339px) {
+    .error__message {
+        font-size: 10px;
+    }
+}

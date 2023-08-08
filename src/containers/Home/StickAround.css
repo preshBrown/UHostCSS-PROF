@@ -1,0 +1,43 @@
+#key-features {
+    background: #ff1b68;
+    padding: 1rem; 
+    margin-top:5rem ;
+    text-align: center;
+  }
+
+  #key-features .section-title {
+    text-align: center;
+    color: white;
+  }
+  #key-features .key-feature__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+  }
+  .key-feature__list > .key-feature > .key-feature__image {
+    margin: auto;
+    height: 128px;
+    width: 128px;
+    padding: 1.5rem;
+    border-radius: 50%;
+    background-color: white;
+  }
+
+  .key-feature__list > li > .key-feature__description {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  @media (min-width: 40rem) {
+    #key-features .key-feature__list {
+      display: flex;
+      justify-content: center;
+    }
+    .key-feature__list > .key-feature {
+      width: 30%;
+      max-width: 25rem;
+    }
+  }

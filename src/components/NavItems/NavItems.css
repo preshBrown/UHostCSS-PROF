@@ -1,0 +1,46 @@
+.NavItems {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.NavItems > li:last-child a {
+    border-radius: 8px;
+}
+
+.NavItems > li:last-child a {
+    padding: 0.5rem 1rem;
+    background-color: black;
+    color: white;
+}
+
+.NavItems > li:last-child a:hover,
+.NavItems > li:last-child a:active {
+color: black;
+background-color: white;
+border: none;
+}
+.NavItems > li:last-child {
+    animation: wiggle 400ms 2s 8 ease-out ;
+  }
+  /* ======================================================================== */
+
+@media (min-width:40rem) {
+    .NavItems {
+        flex-direction: row;
+    }
+}
+
+@keyframes wiggle {
+    0% {
+      transform: rotateZ(0deg);
+    }  
+    50% {
+      transform: rotateZ(-10deg);
+    }
+    100% {
+      transform: rotateZ(10deg);
+    }
+  }

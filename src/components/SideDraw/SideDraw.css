@@ -1,0 +1,29 @@
+.SideDraw {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    max-width: 70%;
+    height: 100%;
+    z-index: 95;
+    background-color: white;
+    padding: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s ease-out;
+}
+
+.Open {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@media (min-width:40rem) {
+    .SideDraw {
+        display: none;
+    }
+}

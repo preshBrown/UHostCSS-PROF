@@ -1,0 +1,88 @@
+.Custom__Button {
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+button.Custom__Button.black {
+    border: 1px solid black;
+    background: black;
+    color: white;
+}
+button.Custom__Button.black:hover,
+button.Custom__Button.black:active {
+    background: white;
+    color: black;
+}
+button.Custom__Button.black:focus {
+    outline: none;
+}
+
+
+button.Custom__Button.green {
+    border: 1px solid green;
+    background: green;
+    color: white;
+}
+button.Custom__Button.green:hover,
+button.Custom__Button.green:active {
+    background: white;
+    color: green;
+}
+button.Custom__Button.green:focus {
+    outline: none;
+}
+
+button.Custom__Button.red {
+    border: 1px solid red;
+    background: red;
+    color: white;
+}
+button.Custom__Button.red:hover,
+button.Custom__Button.red:active {
+    background: white;
+    color: red;
+}
+button.Custom__Button.red:focus {
+    outline: none;
+}
+
+.Custom__Button[class*="red"]:disabled {
+    border-color:gray;
+    background: #ccc;
+    color: gray;
+    cursor: not-allowed;
+}
+.Custom__Button[class*="red"]:disabled:hover {
+    border-color:gray;
+    background: #ccc;
+    color: gray;
+    cursor: not-allowed;
+}
+
+.Custom__Button[class*="green"]:disabled {
+    border-color:gray;
+    background: #ccc;
+    color: gray;
+    cursor: not-allowed;
+}
+.Custom__Button[class*="green"]:disabled:hover {
+    border-color:gray;
+    background: #ccc;
+    color: gray;
+    cursor: not-allowed;
+}
+
+.Custom__Button[class*="black"]:disabled {
+    border-color:gray;
+    background: #ccc;
+    color: gray;
+    cursor: not-allowed;
+}
+.Custom__Button[class*="black"]:disabled:hover {
+    border-color:gray;
+    background: #ccc;
+    color: gray;
+    cursor: not-allowed;
+}

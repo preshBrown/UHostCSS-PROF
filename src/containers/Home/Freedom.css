@@ -1,0 +1,34 @@
+#product-overview {
+    background: url(../../Images/freedom.jpg) center/cover no-repeat, #ff1b68;
+    /* background-image: url("images/freedom.jpg");
+    background-size: cover ;
+    background-position: center; */
+    width: 100%;
+    height: 34vh;
+    position: relative;
+  }
+  #product-overview > h1 {
+    margin: 0;
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    color: white;
+  }
+  
+  @media (min-width: 32rem) {
+    #product-overview {
+      background-position: 50% 25%;
+      height: 40vh;
+    }
+    #product-overview > h1 {
+      font-size: 2rem;
+    }
+  }
+  @media (min-width: 93rem) {
+    #product-overview {
+      background-position: cover;
+    }
+    #product-overview > h1 {
+      font-size: 5rem;
+    }
+  }

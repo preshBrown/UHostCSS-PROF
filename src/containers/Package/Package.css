@@ -1,0 +1,152 @@
+#package-name {
+    padding-top: 2rem;
+}
+
+.background {
+    background: url("../../Images/plans-background.jpg")center/cover;
+    position: fixed;
+    filter: grayscale(40%);
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.package {
+    background: rgba(234, 252, 237, 0.95);
+    border: 4px solid #0e4f1f;
+    width: 80%;
+    margin: 1rem 0;
+    border-left: none;
+    animation: push-up 1.5s ease-in-out forwards;
+}
+
+.package > a {
+    text-decoration: none;
+    padding: 2rem;
+    display: block;
+}
+
+.package > a h1.package__title {
+    color: #000000;
+    font-size: 1.5rem;
+}
+
+.package > a h2.package__subtitle {
+    color: #979797;
+}
+
+.package > a p.package__info {
+    background-color: white;
+    border: 2px solid #0e4f1f;
+    padding: 1rem;
+    color: #0e4f1f;
+    font-size: 1.2rem;
+}
+
+.package:hover,
+.package:active {
+    border-color: #ff5454;
+    animation: hov-up 1s ease-out forwards;
+}
+
+
+section[id*="plus"] {
+    background-color: rgba(213, 255, 220, 0.95);
+    overflow: hidden;
+    position: relative;
+}
+section[id*="plus"] > a > h2.package__badge {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 11rem;
+    text-align: center;
+    margin: 1.2rem;
+    font-size: 0.8rem;
+    background-color: #ff5454;
+    color: white;
+    padding: 0.5rem;
+    transform: rotate(45deg) translateX(3.2rem) translateY(-2.4rem);
+    transform-origin: center;
+    
+
+}
+
+
+.modified__sec {
+    display: flex;
+    justify-content: flex-end;
+}
+section[id*="free"] {
+    text-align: right;
+    border-left: 4px solid #0e4f1f;
+    border-right: none;
+}
+
+
+section[id*="premium"] {
+    background-color:rgba(14, 79, 31, 0.95);
+}
+section[id*="premium"] a > h1[class*="package__title"] {
+    color: white;
+}
+
+
+
+
+
+@media (min-width: 40rem) {
+    .package__name {
+        max-width: 1500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 1499px) {
+    .package {
+        border: 4px solid #0e4f1f;
+    }
+    section[id*="free"] {
+        text-align: right;
+        border-right: 4px solid #0e4f1f;
+    }
+}
+
+/* ================================================================================================= */
+
+@keyframes hov-up {
+    0% {
+        transform: translateY(0);
+    }
+
+    33% {
+        transform: translateY(-1.5rem);
+    }
+    
+    100% {
+        transform: translateY(-1rem);
+    }
+}
+@keyframes push-up {
+    0% {
+        transform: translateY(0);
+    }
+
+    20% {
+        transform: translateY(-2rem);
+    }
+    40% {
+        transform: translateY(2rem);
+    }
+    60% {
+        transform: translateY(-1rem);
+    }
+    80% {
+        transform: translateY(1rem);
+    }
+    
+    100% {
+        transform: translateY(0);
+    }
+}

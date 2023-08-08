@@ -1,0 +1,56 @@
+.Toolbar {
+    position: fixed;
+    padding: 0.5rem 0.9rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: darkgray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 50;
+}
+
+.Toolbar > .left-nav {
+    height: 55px;
+}
+
+.Toolbar > .left-nav > a > img {
+    height: 2.5rem;
+    /* vertical-align: middle; */
+}
+
+
+.Toolbar > .left-nav > button.button__toggle {
+    background:  transparent;
+    border: none;
+    padding: 0.5rem;
+    font-size: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    /* vertical-align: middle; */
+}
+
+.Toolbar > .left-nav > button[class="button__toggle"]:hover,
+.Toolbar > .left-nav > button[class="button__toggle"]:active {
+color: white;
+}
+
+.Toolbar > .left-nav > button[class="button__toggle"]:focus {
+    outline: none;
+}
+
+.Toolbar > .navbar-toolbar {
+    display: none;
+}
+
+
+@media (min-width:40rem) {
+    .Toolbar > .left-nav > button.button__toggle {
+        display: none;
+    }
+
+    .Toolbar > .navbar-toolbar {
+        display: flex;
+    }
+}

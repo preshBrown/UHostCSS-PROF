@@ -1,0 +1,7 @@
+.Start__Hosting {
+    max-width: 700px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 1.3rem 0;
+}

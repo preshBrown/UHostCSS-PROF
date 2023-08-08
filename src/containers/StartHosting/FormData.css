@@ -1,0 +1,116 @@
+.form-title__ {
+  text-align: center;
+  color: darkgray;
+}
+#form__wrapper {
+  display: grid;
+  grid-auto-rows: 4rem;
+  grid-row-gap: 1.8rem;
+  padding: 1rem;
+}
+#form__wrapper > div  {
+  align-self: center;
+}
+
+#form__wrapper label,
+#form__wrapper select,
+#form__wrapper input,
+#form__wrapper textarea {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-weight: bold;
+}
+#form__wrapper select:focus,
+#form__wrapper input:focus,
+#form__wrapper textarea:focus {
+  outline: none;
+  background-color: #a6e7b7;
+  border-color: green;
+}
+#form__wrapper select,
+#form__wrapper input {
+  height: 40px;
+}
+
+#form__wrapper input,
+#form__wrapper textarea {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+#form__wrapper select {
+  border: 1px solid #ccc;
+}
+
+#form__wrapper div[class="bio"] {
+  grid-row-end: span 2;
+}
+#form__wrapper div[class="bio"] > textarea {
+  height: 120px;
+}
+
+#form__wrapper input[type="checkbox"],
+#form__wrapper input[type="checkbox"] + label {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+  border-radius: 0%;
+  font-size: 1.2rem;
+}
+#form__wrapper input[type="checkbox"] {
+  height: 1.1rem;
+  width: 1.1rem;
+  border: 1px solid #ccc;
+  background-color: white;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+#form__wrapper input[type="checkbox"]:checked {
+  border-color: green;
+  background-color: #2ddf5c;
+}
+
+#form__wrapper > button.Custom__Button {
+  justify-self: start;
+  height: 40px;
+  width: 100px;
+}
+
+@media (min-width: 40rem) {
+  #form__wrapper {
+    display: grid;
+    margin: auto;
+    max-width: 700px;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(6, 4rem);
+    grid-template-areas:
+      "fulltName paymentmethod"
+      "email bio"
+      "password bio"
+      "confirmpassword bio"
+      "terms ."
+      "button .";
+    grid-row-gap: 1.8rem;
+    grid-column-gap: 1rem;
+  }
+
+  #form__wrapper > div[class="full__Name"] {
+    grid-area:fulltName ;
+  }
+
+  #form__wrapper > button.Custom__Button {
+    grid-area:button;
+  }
+
+  #form__wrapper > div[class="bio"] {
+    grid-area: bio;
+  }
+
+  #form__wrapper > div[class="bio"] > textarea {
+    height: 230px;
+  }
+
+}
+
+

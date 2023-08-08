@@ -1,0 +1,10 @@
+.Modal > p.paragraph {
+    text-align: center;
+    font-weight: bold;
+    color: gray;
+}
+
+.Modal > div[class*="button__container"] {
+    display: flex;
+    justify-content: space-around;
+}
