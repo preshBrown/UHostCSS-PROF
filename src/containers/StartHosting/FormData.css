@@ -77,6 +77,35 @@
   width: 100px;
 }
 
+
+
+#form__wrapper > div[class="full__Name"] span.svg {
+  display: none;
+}
+#form__wrapper > div[class="email"] span.svg  {
+  display: none;
+}
+
+#form__wrapper > div[class="password"]  {
+  position: relative;
+}
+
+#form__wrapper > div[class="password"] span.svg   {
+  position: absolute;
+  right: 2%;
+  bottom: 3%;
+}
+
+#form__wrapper > div[class="Confirm__password"]  {
+  position: relative;
+}
+#form__wrapper > div[class="Confirm__password"] span.svg   {
+  position: absolute;
+  right: 2%;
+  bottom: 3%;
+}
+
+
 @media (min-width: 40rem) {
   #form__wrapper {
     display: grid;

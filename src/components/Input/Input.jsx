@@ -1,5 +1,6 @@
 import React from "react";
 import { ImNotification } from "react-icons/im";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Input.css";
 
 const Input = (props) => {
@@ -29,7 +30,25 @@ const Input = (props) => {
             {...props.elementConfig}
             value={props.value}
             onChange={props.changed}
-          />
+          />{" "}
+          <span className="svg">
+            {" "}
+            {props.hide ? (
+              <FaEye
+                onClick={props.toggleVisibility.bind(
+                  null,
+                  props.visibilityType
+                )}
+              />
+            ) : (
+              <FaEyeSlash
+                onClick={props.toggleVisibility.bind(
+                  null,
+                  props.visibilityType
+                )}
+              />
+            )}{" "}
+          </span>
         </div>
       );
       break;

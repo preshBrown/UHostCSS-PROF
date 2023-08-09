@@ -55,6 +55,8 @@ const FormData = (props) => {
       elementType: "input",
       classNames: "password",
       note: "must have a minimum length of 8 characters!",
+      visibilityType: "password",
+      hide: false,
       elementConfig: {
         type: "password",
         placeholder: "password",
@@ -69,6 +71,8 @@ const FormData = (props) => {
       elementType: "input",
       classNames: "Confirm__password",
       note: "password do not match",
+      visibilityType: "ConfirmPassword",
+      hide: false,
       elementConfig: {
         type: "password",
         placeholder: "confirm password",
@@ -111,6 +115,25 @@ const FormData = (props) => {
 
   const [currentUser] = useOutletContext();
 
+  const toggleVisibility = (visibilityType) => {
+    console.log(visibilityType);
+    const originalForm = {
+      ...formInfo,
+      [visibilityType]: {
+        ...formInfo[visibilityType],
+        hide: !formInfo[visibilityType].hide,
+        elementConfig: {
+          ...formInfo[visibilityType].elementConfig,
+          type:
+            formInfo[visibilityType].elementConfig.type === "password"
+              ? "text"
+              : "password",
+        },
+      },
+    };
+
+    setFormInfo(originalForm);
+  };
   // ================================================================================CHECK-VALIDATION
   const checkValidation = (value, rules) => {
     let isValid = true;
@@ -162,9 +185,12 @@ const FormData = (props) => {
         originalForm[key].valid = false;
         originalForm[key].value = "";
         originalForm[key].touched = false;
+        originalForm[key].hide = false;
         originalForm[key].validation.isChecked = false;
       }
       originalForm.paymentMethod.valid = true;
+      originalForm.password.elementConfig.type = "password";
+      originalForm.ConfirmPassword.elementConfig.type = "password";
 
       console.log(
         "ischeckedDetails " +
@@ -180,7 +206,6 @@ const FormData = (props) => {
       setLoading(false);
     }, 4000);
   };
-
 
   const inputHandler = (event, identi) => {
     // console.log(`Currently typing on  ${identi}:  ${event.target.value}`);
@@ -237,6 +262,9 @@ const FormData = (props) => {
             elementType={fm.config.elementType}
             elementConfig={fm.config.elementConfig}
             note={fm.config.note}
+            visibilityType={fm.config.visibilityType}
+            hide={fm.config.hide}
+            toggleVisibility={toggleVisibility}
             shouldVal={fm.config.validation}
             invalid={!fm.config.valid}
             touched={fm.config.touched}
