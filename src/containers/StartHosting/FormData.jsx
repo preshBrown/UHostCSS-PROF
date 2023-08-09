@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import CustomButtons from "../../components/CustomButtons/CustomButtons";
+import Spinner from "../../components/Spinner/Spinner";
 import "./FormData.css";
 
 const FormData = (props) => {
@@ -106,6 +107,7 @@ const FormData = (props) => {
 
   const [formIsValid, setFormIsValid] = useState(false);
   const [confirmPass, setConfirmPass] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [currentUser] = useOutletContext();
 
@@ -150,17 +152,39 @@ const FormData = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    setLoading(true);
 
-    const data = {};
-    for (let key in formInfo) {
-      data[key] = formInfo[key].value;
-      console.log(`${[key]} : ${formInfo[key].value}`);
-    }
+    setTimeout(() => {
+      const originalForm = {
+        ...formInfo,
+      };
+      for (let key in originalForm) {
+        originalForm[key].valid = false;
+        originalForm[key].value = "";
+        originalForm[key].touched = false;
+        originalForm[key].validation.isChecked = false;
+      }
+      originalForm.paymentMethod.valid = true;
+
+      console.log(
+        "ischeckedDetails " +
+          originalForm.termsAndCondition.validation.isChecked
+      );
+      setFormInfo(originalForm);
+      setFormIsValid(false);
+      const data = {};
+      for (let key in formInfo) {
+        data[key] = formInfo[key].value;
+        console.log(`${[key]} : ${formInfo[key].value}`);
+      }
+      setLoading(false);
+    }, 4000);
   };
+
 
   const inputHandler = (event, identi) => {
     // console.log(`Currently typing on  ${identi}:  ${event.target.value}`);
-    // console.log(`Checked  ${identi}:  ${event.target.checked}`);
+    // console.log(`  TERMS EVENT:  ${event.target.checked}`);
 
     const originalForm = {
       ...formInfo,
@@ -203,27 +227,34 @@ const FormData = (props) => {
   }
 
   let form = (
-    <form id="form__wrapper" onSubmit={submitHandler}>
-      {formElements.map((fm) => (
-        <Input
-          key={fm.id}
-          class={fm.config.classNames}
-          elementType={fm.config.elementType}
-          elementConfig={fm.config.elementConfig}
-          note={fm.config.note}
-          shouldVal={fm.config.validation}
-          invalid={!fm.config.valid}
-          touched={fm.config.touched}
-          value={fm.config.value}
-          label={fm.config.label}
-          changed={(event) => inputHandler(event, fm.id)}
-        />
-      ))}
-      <CustomButtons btnType="green" disabled={!formIsValid}>
-        Submit
-      </CustomButtons>
-    </form>
+    <>
+      <h3 className="form-title__">Your Details</h3>
+      <form id="form__wrapper" onSubmit={submitHandler}>
+        {formElements.map((fm) => (
+          <Input
+            key={fm.id}
+            class={fm.config.classNames}
+            elementType={fm.config.elementType}
+            elementConfig={fm.config.elementConfig}
+            note={fm.config.note}
+            shouldVal={fm.config.validation}
+            invalid={!fm.config.valid}
+            touched={fm.config.touched}
+            value={fm.config.value}
+            label={fm.config.label}
+            changed={(event) => inputHandler(event, fm.id)}
+          />
+        ))}
+        <CustomButtons btnType="green" disabled={!formIsValid}>
+          Submit
+        </CustomButtons>
+      </form>
+    </>
   );
+
+  if (loading) {
+    form = <Spinner />;
+  }
 
   if (
     formInfo.password.valid &&
@@ -244,10 +275,8 @@ const FormData = (props) => {
       let valid = true;
       for (let key in originalForm) {
         valid = originalForm[key].valid && valid;
-        // console.log(`${key}: ${originalForm[key].valid}`);
       }
-      // console.log(`FOR ISCHECKED: ${updated.validation.isChecked} `);
-      // setErrorNotification(true)
+
       setFormInfo(originalForm);
       setFormIsValid(valid);
     }, 200);
@@ -256,7 +285,6 @@ const FormData = (props) => {
   return (
     <>
       <small>{currentUser}</small>
-      <h3 className="form-title__">Your Details</h3>
       {form}
     </>
   );
