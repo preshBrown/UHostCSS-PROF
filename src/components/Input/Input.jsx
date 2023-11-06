@@ -31,23 +31,9 @@ const Input = (props) => {
             value={props.value}
             onChange={props.changed}
           />{" "}
-          <span className="svg">
+          <span className="svg" onClick={props.toggleVisibility}>
             {" "}
-            {props.hide ? (
-              <FaEye
-                onClick={props.toggleVisibility.bind(
-                  null,
-                  props.visibilityType
-                )}
-              />
-            ) : (
-              <FaEyeSlash
-                onClick={props.toggleVisibility.bind(
-                  null,
-                  props.visibilityType
-                )}
-              />
-            )}{" "}
+            {props.hide ? <FaEye /> : <FaEyeSlash />}{" "}
           </span>
         </div>
       );

@@ -40,7 +40,7 @@ const FormData = (props) => {
     email: {
       elementType: "input",
       classNames: "email",
-      note: "invalid email address",
+      note: "Not a valid email",
       elementConfig: {
         type: "email",
         placeholder: "email",
@@ -135,7 +135,7 @@ const FormData = (props) => {
     setFormInfo(originalForm);
   };
   // ================================================================================CHECK-VALIDATION
-  const checkValidation = (value, rules) => {
+  const checkValidation = (value, rules, confirmedPass) => {
     let isValid = true;
 
     if (!rules) {
@@ -150,11 +150,10 @@ const FormData = (props) => {
       const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).*$/;
       isValid =
         pattern.test(value) && value.length >= rules.minLength && isValid;
-      setConfirmPass(value);
     }
 
     if (rules.isConfirmPassword) {
-      isValid = value === confirmPass && isValid;
+      isValid = value === confirmedPass && isValid;
     }
 
     if (rules.isEmail) {
@@ -182,15 +181,25 @@ const FormData = (props) => {
         ...formInfo,
       };
       for (let key in originalForm) {
-        originalForm[key].valid = false;
-        originalForm[key].value = "";
+        originalForm[key].valid = key === "paymentMethod" ? true : false;
+        originalForm[key].value =
+          key === "paymentMethod"
+            ? "Master"
+            : key === "termsAndCondition"
+            ? "Agreed"
+            : "";
         originalForm[key].touched = false;
         originalForm[key].hide = false;
         originalForm[key].validation.isChecked = false;
+        if (key === "password" || key === "ConfirmPassword") {
+          originalForm[key].elementConfig.type = "password";
+        }
       }
-      originalForm.paymentMethod.valid = true;
-      originalForm.password.elementConfig.type = "password";
-      originalForm.ConfirmPassword.elementConfig.type = "password";
+      // originalForm.paymentMethod.value = "Master";
+      // originalForm.paymentMethod.valid = true;
+      // originalForm.termsAndCondition.value = "Agreed";
+      // originalForm.password.elementConfig.type = "password";
+      // originalForm.ConfirmPassword.elementConfig.type = "password";
 
       console.log(
         "ischeckedDetails " +
@@ -219,17 +228,29 @@ const FormData = (props) => {
     };
 
     updated.validation.isChecked = event.target.checked;
-    updated.value = event.target.value;
-    updated.valid = checkValidation(updated.value, updated.validation);
+    updated.value =
+      identi === "termsAndCondition" ? "Agreed" : event.target.value;
     updated.touched = true;
-
-    if (identi === "password" && updated.value.length >= 8) {
+    if (identi === "password") {
       updated.note =
-        "must  contain a Capital letter, small latter, a special character, and a digit!";
+        updated.value.length >= 8
+          ? "must  contain a Capital letter, small letter, a special character, and a digit!"
+          : "must have a minimum length of 8 characters!";
+      setConfirmPass(updated.value);
     }
-    if (identi === "password" && updated.value.length < 8) {
-      updated.note = "must have a minimum length of 8 characters!";
-    }
+    updated.valid = checkValidation(
+      updated.value,
+      updated.validation,
+      confirmPass
+    );
+
+    // if (identi === "password" && updated.value.length >= 8) {
+    //   updated.note =
+    //     "must  contain a Capital letter, small letter, a special character, and a digit!";
+    // }
+    // if (identi === "password" && updated.value.length < 8) {
+    //   updated.note = "must have a minimum length of 8 characters!";
+    // }
 
     originalForm[identi] = updated;
 
@@ -262,9 +283,9 @@ const FormData = (props) => {
             elementType={fm.config.elementType}
             elementConfig={fm.config.elementConfig}
             note={fm.config.note}
-            visibilityType={fm.config.visibilityType}
+            // visibilityType={fm.config.visibilityType}
             hide={fm.config.hide}
-            toggleVisibility={toggleVisibility}
+            toggleVisibility={toggleVisibility.bind(null, fm.config.visibilityType)}
             shouldVal={fm.config.validation}
             invalid={!fm.config.valid}
             touched={fm.config.touched}
@@ -307,7 +328,30 @@ const FormData = (props) => {
 
       setFormInfo(originalForm);
       setFormIsValid(valid);
-    }, 200);
+    });
+  }
+  if (
+    formInfo.password.valid &&
+    formInfo.password.value === formInfo.ConfirmPassword.value &&
+    !formInfo.ConfirmPassword.valid
+  ) {
+    const originalForm = {
+      ...formInfo,
+    };
+    const updated = {
+      ...originalForm.ConfirmPassword,
+    };
+    updated.valid = true;
+
+    originalForm.ConfirmPassword = updated;
+
+    let valid = true;
+    for (let key in originalForm) {
+      valid = originalForm[key].valid && valid;
+    }
+
+    setFormInfo(originalForm);
+    setFormIsValid(valid);
   }
 
   return (
