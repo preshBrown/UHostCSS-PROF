@@ -310,7 +310,6 @@ const FormData = (props) => {
     formInfo.ConfirmPassword.valid &&
     formInfo.password.value !== formInfo.ConfirmPassword.value
   ) {
-    setTimeout(() => {
       const originalForm = {
         ...formInfo,
       };
@@ -328,7 +327,6 @@ const FormData = (props) => {
 
       setFormInfo(originalForm);
       setFormIsValid(valid);
-    });
   }
   if (
     formInfo.password.valid &&
